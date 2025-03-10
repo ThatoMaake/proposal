@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Girlfriend?</title>
+    <style>
+        body {
+            background-color: #ffb6c1; /* Soft Pink Background */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        /* Glowing Heart */
+        .heart {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background-color: #ff3385;
+            transform: rotate(-45deg);
+            animation: bloom 5s infinite;
+            transform-origin: center;
+            border-radius: 20%;
+            box-shadow: 0 0 40px #ff66b2;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: #ff3385;
+            border-radius: 20%;
+        }
+
+        .heart::before {
+            top: -100px;
+            left: 0;
+            bottom: 300px;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 100px;
+            bottom: 300px;
+        }
+
+        /* Proposal Message */
+        .message {
+            font-size: 36px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 5s;
+            letter-spacing: 3px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Answer Buttons */
+        .answer-buttons {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .answer-buttons button {
+            font-size: 24px;
+            padding: 12px 30px;
+            margin: 15px;
+            background-color: #ff3385;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .answer-buttons button:hover {
+            background-color: #ff66b2;
+        }
+
+        /* Animations */
+        @keyframes bloom {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Button click animations */
+        .yes-response {
+            animation: yesResponse 1s forwards;
+        }
+
+        .no-response {
+            animation: noResponse 1s forwards;
+        }
+
+        @keyframes yesResponse {
+            0% {
+                transform: scale(1);
+                background-color: #28a745;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes noResponse {
+            0% {
+                transform: scale(1);
+                background-color: #dc3545;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Heart animation -->
+        <div class="heart"></div>
+
+        <!-- Message asking to be her girlfriend -->
+        <div class="message" id="message">Will you be my girlfriend Elora? 💖</div>
+
+        <!-- Answer buttons -->
+        <div class="answer-buttons" id="answer-buttons">
+            <button id="yes-button">Yes!</button>
+            <button id="no-button">No...</button>
+        </div>
+    </div>
+
+    <script>
+        // Display the answer buttons after the heart blooms
+        setTimeout(() => {
+            document.getElementById('answer-buttons').style.display = 'block';
+        }, 5000); // Show buttons after 5 seconds
+
+        // Handle "Yes" button click
+        document.getElementById('yes-button').addEventListener('click', () => {
+            const yesButton = document.getElementById('yes-button');
+            yesButton.classList.add('yes-response');
+            setTimeout(() => {
+                alert('You said Yes! We Locked in ❤️');
+            }, 1000); // Show the alert after animation completes
+            document.getElementById('answer-buttons').style.display = 'none';
+        });
+
+        // Handle "No" button click
+        document.getElementById('no-button').addEventListener('click', () => {
+            const noButton = document.getElementById('no-button');
+            noButton.classList.add('no-response');
+            setTimeout(() => {
+                alert('You said No... 😢');
+            }, 1000); // Show the alert after animation completes
+            document.getElementById('answer-buttons').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
+
